@@ -63,10 +63,52 @@ int bubble_sort(int arr[], int n){
 
 }
 
-int merge_sort(int arr[], int n){
+//MERGE SORT
+void merge(int a[], int start, int mid, int end){
+    int i, j, k;
+    int n1 = mid - start + 1;
+    int n2 = end - mid;
 
+    int L[n1], R[n2];
+
+    for (int i = 0; i < n1; i++){
+        L[i] = a[start + i];
+    }
+    for (int j = 0; j < n2; j++){
+        R[j] = a[mid + 1 + j];
+    }
+
+    i = 0;
+    j = 0;
+    k = start;
+
+    while (i < n1 && j < n2){
+        if (L[i] <= R[j]){
+            a[k++] = L[i++];
+        }
+        else{
+            a[k++] = R[j++];
+        }
+    }
+    while (i < n1){
+        a[k++] = L[i++];
+    }
+
+    while (j < n2){
+            a[k++] = R[j++];
+        }
 }
 
+void merge_sort(int a[], int start, int end){
+    if (start < end){
+        int mid = (start + end) / 2;
+        merge_sort(a, start, mid);
+        merge_sort(a, mid + 1, end);
+        merge(a, start, mid, end);
+    }
+}
+
+// QUICK SORT
 int partition(int a[], int start, int end){
     int pivot = a[end];
     int i = (start - 1);
@@ -119,10 +161,16 @@ int main(){
         bubble_sort(arr, n);
     }
     else if(choice==4){
-        merge_sort(arr, n);
+        merge_sort(arr, 0, n-1);
+
+        printf("Sorted Array: ");
+        for(int i=0;i<n;i++){
+        printf("%d ", arr[i]);
+        }
     }
     else if(choice==5){
         quick_sort(arr, 0, n-1);
+
         printf("Sorted Array: ");
         for(int i=0;i<n;i++){
         printf("%d ", arr[i]);
