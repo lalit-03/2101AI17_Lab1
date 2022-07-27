@@ -14,5 +14,9 @@ int main(){
     if(choice==1){
         printf("a + b = %d", a+b);
     }
+    else if(choice==2){
+        printf("a - b = %d", a-b);
+    }
+    
     return 0;
 }
