@@ -24,6 +24,24 @@ int insertion_sort(int arr[], int n){
 }
 
 int selection_sort(int arr[], int n){
+    int x;
+    for(int i=0;i<n-1;i++){
+        x = i;
+
+        for (int j = i+1; j < n; j++) {
+            if (arr[j] < arr[x])
+            x = j;
+        }
+
+        int temp = arr[x];
+        arr[x] = arr[i];
+        arr[i] = temp;
+    }
+
+    printf("Sorted Array: ");
+    for(int i=0;i<n;i++){
+        printf("%d ", arr[i]);
+    }
 
 }
 
