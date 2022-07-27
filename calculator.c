@@ -20,6 +20,17 @@ int main(){
     else if(choice==3){
         printf("a * b = %d", a*b);
     }
-    
+    else if(choice==4){
+        if(b==0){
+            printf("Division by zero is not possible.");
+        }
+        else{
+            printf("a / b = %d", a/b);
+        }
+    }
+    else{
+        printf("Please enter a valid choice.");
+    }
+
     return 0;
 }
