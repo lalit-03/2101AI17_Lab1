@@ -67,8 +67,30 @@ int merge_sort(int arr[], int n){
 
 }
 
-int quick_sort(int arr[], int n){
+int partition(int a[], int start, int end){
+    int pivot = a[end];
+    int i = (start - 1);
 
+    for (int j = start; j <= end - 1; j++){
+        if (a[j] < pivot){
+            i++;
+            int t = a[i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+    }
+    int t = a[i + 1];
+    a[i + 1] = a[end];
+    a[end] = t;
+    return (i + 1);
+}
+
+void quick_sort(int a[], int start, int end){
+    if (start < end){
+        int p = partition(a, start, end);
+        quick_sort(a, start, p - 1);
+        quick_sort(a, p + 1, end);
+    }
 }
 
 int main(){
@@ -100,7 +122,11 @@ int main(){
         merge_sort(arr, n);
     }
     else if(choice==5){
-        quick_sort(arr, n);
+        quick_sort(arr, 0, n-1);
+        printf("Sorted Array: ");
+        for(int i=0;i<n;i++){
+        printf("%d ", arr[i]);
+        }
     }
     else{
         printf("Please enter a valid choice.");
